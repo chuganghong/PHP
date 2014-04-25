@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<script type="text/javascript">
+function buy(i)
+{
+var num=$(':input[name=num]')[i].value;
+var name=$('[name=name]')[i].innerHTML;
+var price=$('[name=price]')[i].innerHTML;
+alert(num+name+price);
+$.ajax({
+type:'post', //传送的方式,get/post
+url:'index.php', //发送数据的地址
+cache:'false',
+data:'act=add&num='+num+"&name="+name+"&price="+price,
+success:function(data)
+{
+//alert(data);
+}
+})
+}
+
+function del(i)
+{
+var num=$(':input[name=num]')[i].value;
+var name=$('[name=name]')[i].innerHTML;
+var price=$('[name=price]')[i].innerHTML;
+alert(num+name+price);
+$.ajax({
+type:'post', //传送的方式,get/post
+url:'index.php', //发送数据的地址
+cache:'false',
+data:'act=delete&num='+num+"&name="+name+"&price="+price,
+success:function(data)
+{
+//alert(data);
+}
+})
+}
+</script>
+</head>
+<body>
+<table>
+<tr><td>商品编号</td><td>商品名称</td><td>价格</td><td>数量</td><td>购买</td><td>删除</td></tr>
+<tr><td>0</td><td><label name='name' >商品1</label></td><td><label name='price'>1</label>
+</td><td><input name='num' type='text' value='1' /></td>
+<td><a onclick='buy(0)'><u><font color='blue'>购买</font></u></a></td>
+<td><a onclick='del(0)'><u><font color='blue'>删除</font></u></a></td>
+
+</tr>
+<tr><td>1</td><td><label name='name' >商品2</label></td><td><label name='price'>2</label>
+</td><td><input name='num' type='text' value='1' /></td><td><a onclick='buy(1)'>购买</a></td>
+<td><a onclick='del(1)'><u><font color='blue'>删除</font></u></a></td>
+</tr>
+<tr><td>2</td><td><label name='name' >商品3</label></td><td><label name='price'>1</label>
+</td><td><input name='num' type='text' value='1' /></td><td><a onclick='buy(2)'>购买</a></td>
+<td><a onclick='del(2)'><u><font color='blue'>删除</font></u></a></td>
+</tr>
+<tr><td>3</td><td><label name='name' >商品4</label></td><td><label name='price'>1</label>
+</td><td><input name='num' type='text' value='1' /></td><td><a onclick='buy(3)'>购买</a></td>
+<td><a onclick='del(3)'><u><font color='blue'>删除</font></u></a></td>
+
+</tr>
+<tr><a href='show.php'>查看购物车</a></tr>
+</table>
+</body>
+</html> 
