@@ -62,20 +62,16 @@ class RequestInfo
 	*/
 	function get_request_info($str)
 	{
-		$arr = explode(chr(13),$str);
-	// var_dump($arr);
+		$arr = explode(chr(10),$str);			
 		$res = array();
 		foreach($arr as $v)
-		{
-		// $arr2 = explode('  ',$v);
+		{		
 			$pattern = '#(\S++)(\s+?)([\S\s]++)#';
-			preg_match_all($pattern,$v,$match);
-		// var_dump($match);
-		// $res[] = array($match[1][0] => $match[3][0]);
+			preg_match_all($pattern,$v,$match);		
 			$res[$match[1][0]] = $match[3][0];
+			
 		
-		}
-	// var_dump($res);
+		}			
 		return $res;
 	}
 
@@ -93,15 +89,15 @@ class RequestInfo
 			$num++;
 			if($num==$max_num)
 			{
-				$info .= '\'' . $k . '\':' . '\'' . $v . '\'' . chr(13);
+				$info .= "'" . $k . "':" . "'" . $v . "'" . chr(10);
 			}
 			else
 			{
-				$info .= '\'' . $k . '\':' . '\'' . $v . '\',' . chr(13);
+				$info .= "'" . $k . "':" . "'" . $v . "'," . chr(10);
 			}
 		
 		}
-		$info .= '}' . chr(13);
+		$info .= '}' . chr(10);
 		return $info;
 	}
 
@@ -119,22 +115,24 @@ class RequestInfo
 	}
 }
 $str = <<<EOT
-Accept	image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Encoding	gzip, deflate
-Accept-Language	zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3
-Connection	keep-alive
-Cookie	bid="BLn+omNAXcQ"; ll="130294"; __utma=30149280.754383318.1398390202.1398390202.1398390202.1; __utmb=30149280.3.10.1398390202; __utmc=30149280; __utmz=30149280.1398390202.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
-Host	img3.douban.com
-Referer	http://movie.douban.com/subject/1295644/?qq-pf-to=pcqq.temporaryc2c
-User-Agent	Mozilla/5.0 (Windows NT 5.1; rv:28.0) Gecko/20100101 Firefox/28.0
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding gzip,deflate,sdch
+Accept-Language zh-CN,zh;q=0.8,en;q=0.6
+Cache-Control max-age=0
+Connection keep-alive
+Cookie bid="S2bsJtblOa0"; ll="118281"; viewed="1200840_1867455_1968704_10561367_1786120"; __utma=30149280.1560064197.1396532637.1398359268.1398488110.26; __utmb=30149280.2.10.1398488110; __utmc=30149280; __utmz=30149280.1398488110.26.13.utmcsr=douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/; __utma=223695111.718571462.1396532637.1398359268.1398488110.17; __utmb=223695111.2.10.1398488110; __utmc=223695111; __utmz=223695111.1398488110.17.6.utmcsr=douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/
+Host movie.douban.com
+Referer http://movie.douban.com/tag/%E5%8A%A8%E4%BD%9C
+User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36
 EOT;
 
-$arr = get_request_info($str);
+
+$class = new RequestInfo('2.py',3);
+$arr = $class->get_request_info($str);
 
 
-// var_dump($arr);exit;
-$i = 2;
-$info = ouput_request_info($arr,$i);
-$fp = fopen('info.py','a+');
-fwrite($fp,$info);
-fclose($fp);
+
+$res = $class->ouput_request_info($arr,3);
+
+
+file_put_contents('a.txt',$res);
