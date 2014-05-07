@@ -1,2 +1,4 @@
 RewriteEngine On
-RewriteRule ^([0-9]{0,4})@([0-9]{0,2})+([^/]*).html$ /Github/php/rewrite/view.php?y=$1&m=$2&q=$3
+RewriteCond %{REMOTE_ADDR} ^127.0.0.1$  
+RewriteRule ^([0-9]{0,4})/([0-9]{0,2})/([^/]+).html$ /Github/PHP/Rewrite/view.php?y=$1&m=$2&q=$3 
+RewriteRule (.*) http://www.ifeng.com/ [R=301]
