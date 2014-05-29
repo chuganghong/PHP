@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS禁止FORM的submit按钮提交</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<script type="text/javascript">
+/**
+ *ggh
+ *用JS阻止FORM的<input type="submit" />提交
+ *很有用。既可以使用form的默认提交，又可以对默认提交进行JS干扰.
+ */
+function sub()
+{
+	var content = document.getElementById("content").value;
+	if(content == "")
+	{
+		alert("No empty");
+	}
+	else
+	{
+		alert(content);
+	}
+}
+</script>
+</head>
+<body>
+<div>
+	<form method="POST" onSubmit="return sub()">
+	<p><textarea id="content"></textarea></p>
+	<p><input type="submit" value="Submit" /></p>	
+	</form>
+</div>
+</body>
+</html>
