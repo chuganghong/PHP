@@ -1,0 +1,9 @@
+<?php
+if(isset($_POST))
+{
+	var_dump($_POST);
+}
+elseif(isset($_GET))
+{
+	var_dump($_GET);
+}
