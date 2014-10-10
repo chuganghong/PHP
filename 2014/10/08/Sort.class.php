@@ -122,7 +122,7 @@ class Sort
 	}
 
 	/**
-	 *quick sort asc
+	 *quick sort asc--difficult
 	 */
 	public function quickSortAsc($arr)
 	{
