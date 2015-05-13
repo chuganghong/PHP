@@ -3,7 +3,7 @@ Header('Content-Type:text/html;charset=utf-8');
 // $filename = 'delete_file.php';
 // var_dump(get_file_suffix($filename));
 
-$dir = 'E:\Github\C\2014\11\24';
+$dir = 'E:\Github\C';
 $type = array('exe','o');
 // var_dump(DIRECTORY_SEPARATOR);
 delete_file($dir,$type);
